@@ -317,37 +317,7 @@ else:
 plt.tight_layout()
 plt.show()
 
-# 7. Rating vs Global Sales scatter plot
-plt.figure(figsize=(10, 8))
-# Try to merge datasets for this analysis
-name_col_sales = None
-for col in sales_clean.columns:
-    if 'name' in col.lower():
-        name_col_sales = col
-        break
-
-if title_col and name_col_sales and rating_col and global_sales_col:
-    try:
-        merged_df = pd.merge(games_clean, sales_clean, left_on=title_col, right_on=name_col_sales, how='inner')
-        if not merged_df.empty:
-            plt.scatter(merged_df[rating_col], merged_df[global_sales_col], alpha=0.6, s=60)
-            plt.xlabel('Rating')
-            plt.ylabel('Global Sales (Millions)')
-            plt.title('🎯 Rating vs Global Sales')
-            plt.grid(True, alpha=0.3)
-        else:
-            plt.text(0.5, 0.5, 'No matching games found', ha='center', va='center', transform=plt.gca().transAxes)
-            plt.title('🎯 Rating vs Sales (No Matches)')
-    except:
-        plt.text(0.5, 0.5, 'Cannot merge datasets', ha='center', va='center', transform=plt.gca().transAxes)
-        plt.title('🎯 Rating vs Sales (Error)')
-else:
-    plt.text(0.5, 0.5, 'Required columns not available', ha='center', va='center', transform=plt.gca().transAxes)
-    plt.title('🎯 Rating vs Sales (No Data)')
-plt.tight_layout()
-plt.show()
-
-# 8. Top wishlisted games (if wishlist column exists)
+# 7. Top wishlisted games (if wishlist column exists)
 plt.figure(figsize=(10, 8))
 wishlist_col = None
 for col in games_clean.columns:
@@ -375,7 +345,7 @@ else:
 plt.tight_layout()
 plt.show()
 
-# 9. Genre sales comparison
+# 8. Genre sales comparison
 plt.figure(figsize=(10, 8))
 sales_genre_col = None
 for col in sales_clean.columns:
@@ -396,7 +366,7 @@ else:
 plt.tight_layout()
 plt.show()
 
-# 10. Developer productivity (if team/developer column exists)
+# 9. Developer productivity (if team/developer column exists)
 plt.figure(figsize=(10, 8))
 team_col = None
 for col in games_clean.columns:
@@ -417,7 +387,7 @@ else:
 plt.tight_layout()
 plt.show()
 
-# 11. Engagement metrics comparison (if available)
+# 10. Engagement metrics comparison (if available)
 plt.figure(figsize=(10, 8))
 engagement_cols = []
 for col in games_clean.columns:
@@ -454,7 +424,7 @@ else:
 plt.tight_layout()
 plt.show()
 
-# 12. Release year distribution
+# 11. Release year distribution
 plt.figure(figsize=(10, 8))
 release_year_col = None
 for col in games_clean.columns:
@@ -809,4 +779,5 @@ print("   🔍 Advanced Analytics: ✓ Completed")
 
 # Close database connection
 db_conn.close()
+
 print("\n🔒 Database connection closed.")
